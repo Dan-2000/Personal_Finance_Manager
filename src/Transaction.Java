@@ -1,8 +1,13 @@
 import java.util.Scanner;
 public Scanner sc = new Scanner(System.in);
-public class transaction {
+public class Transaction {
     public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
 
+
+
+
+sc.close();
     }
      public void addTransaction(String date, String description, double amount) {
         System.out.println("Please enter the transaction date (YYYY-MM-DD):");
@@ -34,5 +39,5 @@ public class transaction {
             }
         }
         System.out.println("Transaction added: " + date + " - " + description + " - $" + amount);
-    }
+    }   
 }
