@@ -1,43 +1,29 @@
 import java.util.Scanner;
-public Scanner sc = new Scanner(System.in);
 public class Transaction {
-    public static void main(String[] args) {
-Scanner sc = new Scanner(System.in);
+    private String date;
+    private String description;
+    private double amount;
+    private TransactionType type;
 
-
-
-
-sc.close();
+    public Transaction(String date, String description, double amount, TransactionType type) {
+        this.date = date;
+        this.description = description;
+        this.amount = amount;
+        this.type = type;
     }
-     public void addTransaction(String date, String description, double amount) {
-        System.out.println("Please enter the transaction date (YYYY-MM-DD):");
-        date = sc.nextLine();
-        System.out.println("Please enter the transaction description:");
-        description = sc.nextLine();
-        System.out.println("Please enter the transaction amount:");
-        amount = sc.nextDouble();
-        while(true) 
-            {
-            if (!isValidDate(date)) 
-            {
-                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format:");
-                date = sc.nextLine();
-            } 
-            else if (description.isEmpty()) 
-            {
-                System.out.println("Description cannot be empty. Please enter a valid description:");
-                description = sc.nextLine();
-            }
-            else if (amount <= 0) 
-            {
-                System.out.println("Amount must be greater than zero. Please enter a valid amount:");
-                amount = sc.nextDouble();
-            }
-            else 
-            { 
-                break;
-            }
-        }
-        System.out.println("Transaction added: " + date + " - " + description + " - $" + amount);
-    }   
+    public String getDate() {
+        return date;
+    }
+    public String getDescription(){
+        return description;
+    }
+    public double getAmount() {
+        return amount;
+    }
+    public TransactionType getType() {
+        return type.toString();
+    }
+    public enum TransactionType {
+        INCOME, EXPENSE
+    }
 }
