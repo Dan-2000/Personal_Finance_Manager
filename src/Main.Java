@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -13,30 +14,17 @@ public class Main {
             int option = sc.nextInt();
              switch (option) {
                  case 1:
-                     System.out.println("Please enter the transaction details:");
-                     System.out.println("Date (YYYY-MM-DD):");
-                     String date = sc.next();
-                     System.out.println("Please enter a Description:");
-                     String description = sc.next();
-                     System.out.println("Please enter an amount:");
-                     double amount = sc.nextDouble();
-                     System.out.println("Please select the transaction type (1 for Income, 2 for Expense):");
-                     int typeOption = sc.nextInt();
-                     Transaction.TransactionType type;
-                     if (typeOption == 1) {
-                        type = Transaction.TransactionType.INCOME;
-                     }
-                    else {
-                        type = Transaction.TransactionType.EXPENSE;
-                        }
-                    validateTransactionAdd(date, description, amount, typeOption);
-                     System.out.println("Transaction added: " + date + " - " + description + " - $" + amount + " - " + type);
-                     financeManager.addTransaction(new Transaction(date,description, amount, type));
+                    String date = getValidDate(sc);
+                    String description = getValidDescription(sc);
+                    double amount = getValidAmount(sc);
+                    Transaction.TransactionType type = getValidTypeOption(sc);
+                    financeManager.addTransaction(new Transaction(date,description, amount, type));
+                    System.out.println("Transaction added: " + date + " - " + description + " - $" + amount + " - " + type);
                      break;
                  case 2:
                     List<Transaction> transactions = financeManager.getTransactions();
                     if (transactions.isEmpty()) {
-                        system.out.println("No transactions found.");
+                        System.out.println("No transactions found.");
                     } else {
                         for (Transaction i : transactions) {
                             System.out.println(i.getDate() + " - " +
@@ -44,12 +32,12 @@ public class Main {
                                                i.getAmount() + " - " + 
                                                i.getType());
                         }
-                    })
+                    }
                         
                  break;
                  case 3:
                      // Code to view summary
-                     system.out.println("Summary feature is under development. Please check back later.");
+                     System.out.println("Summary feature is under development. Please check back later.");
                      break;
                  case 4:
                      System.out.println("Exiting Personal Finance Manager. Goodbye!");
@@ -62,34 +50,66 @@ public class Main {
     }
      
     //Validation logic for adding transactions
-    public static validateTransactionAdd(String date, String description, double amount, int typeOption) {
-     while(true) 
-            {
+
+    public static String getValidDate(Scanner sc) {
+        while(true){
+            System.out.println("Please enter the transaction date (YYYY-MM-DD):");
+            String date = sc.next();
             if (!isValidDate(date)) 
             {
                 System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format:");
                 date = sc.next();
             } 
-            else if (description.isEmpty()) 
+            else 
+            {
+                return date;
+            }
+        }
+    }
+
+    public static String getValidDescription(Scanner sc) {
+        while(true){
+            System.out.println("Please enter a description for the transaction:");
+            String description = sc.next();
+            if (description.isEmpty()) 
             {
                 System.out.println("Description cannot be empty. Please enter a valid description:");
-                description = sc.nextLine();
+                description = sc.next();
+            } 
+            else 
+            {
+                return description;
             }
-            else if (amount <= 0) 
+        }
+    }
+    public static double getValidAmount(Scanner sc) {
+        while(true) {
+            System.out.println("Please enter the transaction amount:");
+            double amount = sc.nextDouble();
+            if (amount <= 0) 
             {
                 System.out.println("Amount must be greater than zero. Please enter a valid amount:");
                 amount = sc.nextDouble();
             }
-            else if (typeOption != 1 && typeOption != 2) 
+            else 
             {
+                return amount;
+            }
+        }
+    }
+    public static Transaction.TransactionType getValidTypeOption(Scannner sc){
+        while(true){
+            System.out.println("Please select the transaction type (1 for Income, 2 for Expense):");
+            int typeOption = sc.nextInt();
+            if (typeOption == 1) {
+                        type = Transaction.TransactionType.INCOME;
+                }
+            elseif (typeOption == 2) {
+                type = Transaction.TransactionType.EXPENSE;
+                        }
+            else {
                 System.out.println("Invalid transaction type. Please select 1 for Income or 2 for Expense:");
                 typeOption = sc.nextInt();
             }
-            else 
-            { 
-                break;
-                }
-            }
-
-        }
-    }
+    }   
+ }
