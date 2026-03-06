@@ -26,18 +26,20 @@ public class Main {
                     if (transactions.isEmpty()) {
                         System.out.println("No transactions found.");
                     } else {
-                        for (Transaction i : transactions) {
-                            System.out.println(i.getDate() + " - " +
-                                               i.getDescription() + " - $" + 
-                                               i.getAmount() + " - " + 
-                                               i.getType());
+                        for (Transaction t : transactions) {
+                            System.out.println(t.getDate() + " - " +
+                                               t.getDescription() + " - $" + 
+                                               t.getAmount() + " - " + 
+                                               t.getType());
                         }
                     }
                         
                  break;
                  case 3:
-                     // Code to view summary
-                     System.out.println("Summary feature is under development. Please check back later.");
+                     List<Transaction> transactions = financeManager.getSummary();
+                          System.out.println("Total Income: $" + income);
+                          System.out.println("Total Expenses: $" + expenses);
+                          System.out.println("Net Balance: $" + (income - expenses));
                      break;
                  case 4:
                      System.out.println("Exiting Personal Finance Manager. Goodbye!");
