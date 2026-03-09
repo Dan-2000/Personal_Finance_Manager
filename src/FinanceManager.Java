@@ -16,12 +16,15 @@ public class FinanceManager {
       double income = 0;
       double expenses = 0;
       for (Transaction t: transactions){
-        if(t.Type == Transaction.TransactionType.INCOME){
+        if(t.getType() == Transaction.TransactionType.INCOME){
           income += t.getAmount();
         } 
-        else if (t.Type == Transaction.TransactionType.EXPENSE) {
+        else if (t.getType() == Transaction.TransactionType.EXPENSE) {
           expenses += t.getAmount();
         }
         }
+        System.out.println("Total Income: $" + income);
+        System.out.println("Total Expenses: $" + expenses);
+        System.out.println("Net Balance: $" + (income - expenses));
     }     
   }

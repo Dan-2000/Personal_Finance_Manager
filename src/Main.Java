@@ -36,10 +36,7 @@ public class Main {
                         
                  break;
                  case 3:
-                     List<Transaction> transactions = financeManager.getSummary();
-                          System.out.println("Total Income: $" + income);
-                          System.out.println("Total Expenses: $" + expenses);
-                          System.out.println("Net Balance: $" + (income - expenses));
+                     financeManager.getSummary();
                      break;
                  case 4:
                      System.out.println("Exiting Personal Finance Manager. Goodbye!");
@@ -99,15 +96,15 @@ public class Main {
             }
         }
     }
-    public static Transaction.TransactionType getValidTypeOption(Scannner sc){
+    public static Transaction.TransactionType getValidTypeOption(Scanner sc){
         while(true){
             System.out.println("Please select the transaction type (1 for Income, 2 for Expense):");
             int typeOption = sc.nextInt();
             if (typeOption == 1) {
-                        type = Transaction.TransactionType.INCOME;
+                        return Transaction.TransactionType.INCOME;
                 }
-            elseif (typeOption == 2) {
-                type = Transaction.TransactionType.EXPENSE;
+            else if (typeOption == 2) {
+                return Transaction.TransactionType.EXPENSE;
                         }
             else {
                 System.out.println("Invalid transaction type. Please select 1 for Income or 2 for Expense:");
@@ -115,3 +112,4 @@ public class Main {
             }
     }   
  }
+}
