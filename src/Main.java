@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -45,7 +45,7 @@ public class Main {
                      System.out.println(option + " is an invalid option. Please try again.");
                 }
         }
-    sc.close();
+ 
     }
      
     //Validation logic for adding transactions
@@ -58,6 +58,7 @@ public class Main {
             {
                 System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format:");
                 date = sc.next();
+                return date;
             } 
             else 
             {
@@ -74,6 +75,7 @@ public class Main {
             {
                 System.out.println("Description cannot be empty. Please enter a valid description:");
                 description = sc.next();
+                return description;
             } 
             else 
             {
@@ -89,6 +91,7 @@ public class Main {
             {
                 System.out.println("Amount must be greater than zero. Please enter a valid amount:");
                 amount = sc.nextDouble();
+                return amount;
             }
             else 
             {
@@ -112,4 +115,7 @@ public class Main {
             }
     }   
  }
+    public static boolean isValidDate(String date) {
+        return date.matches("\\d{4}-\\d{2}-\\d{2}");
+    }
 }

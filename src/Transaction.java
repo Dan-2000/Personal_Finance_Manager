@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class Transaction {
     private String date;
     private String description;
@@ -21,7 +20,7 @@ public class Transaction {
         return amount;
     }
     public TransactionType getType() {
-        return type.toString();
+        return type;
     }
     public enum TransactionType {
         INCOME, EXPENSE
