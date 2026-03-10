@@ -12,16 +12,16 @@ public class Main {
        "%n 4. Exit" +
        "%n Please select an option:");
             int option = sc.nextInt();
-             switch (option) {
-                 case 1:
+            switch (option) {
+                case 1 -> {
                     String date = getValidDate(sc);
                     String description = getValidDescription(sc);
                     double amount = getValidAmount(sc);
                     Transaction.TransactionType type = getValidTypeOption(sc);
-                    financeManager.addTransaction(new Transaction(date,description, amount, type));
+                    financeManager.addTransaction(new Transaction(date, description, amount, type));
                     System.out.println("Transaction added: " + date + " - " + description + " - $" + amount + " - " + type);
-                     break;
-                 case 2:
+                }
+                case 2 -> {
                     List<Transaction> transactions = financeManager.getTransactions();
                     if (transactions.isEmpty()) {
                         System.out.println("No transactions found.");
@@ -33,20 +33,16 @@ public class Main {
                                                t.getType());
                         }
                     }
-                        
-                 break;
-                 case 3:
-                     financeManager.getSummary();
-                     break;
-                 case 4:
-                     System.out.println("Exiting Personal Finance Manager. Goodbye!");
-                     return;
-                 default:
-                     System.out.println(option + " is an invalid option. Please try again.");
                 }
-        }
- 
+                case 3 -> financeManager.getSummary();
+                case 4 -> {
+                    System.out.println("Exiting Personal Finance Manager. Goodbye!");
+                    return;
+                }
+                default -> System.out.println(option + " is an invalid option. Please try again.");
+            }
     }
+}
      
     //Validation logic for adding transactions
 
