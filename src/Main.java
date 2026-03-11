@@ -19,6 +19,7 @@ public class Main {
                     double amount = getValidAmount(sc);
                     Transaction.TransactionType type = getValidTypeOption(sc);
                     financeManager.addTransaction(new Transaction(date, description, amount, type));
+                    financeManager.saveTransaction(new Transaction(date, description, amount, type));
                     System.out.println("Transaction added: " + date + " - " + description + " - $" + amount + " - " + type);
                 }
                 case 2 -> {
@@ -99,18 +100,18 @@ public class Main {
         while(true){
             System.out.println("Please select the transaction type (1 for Income, 2 for Expense):");
             int typeOption = sc.nextInt();
-            if (typeOption == 1) {
-                        return Transaction.TransactionType.INCOME;
+            switch (typeOption) {
+                case 1 ->{
+                     return Transaction.TransactionType.INCOME;
                 }
-            else if (typeOption == 2) {
-                return Transaction.TransactionType.EXPENSE;
-                        }
-            else {
-                System.out.println("Invalid transaction type. Please select 1 for Income or 2 for Expense:");
-                typeOption = sc.nextInt();
-            }
+                case 2 ->{
+                     return Transaction.TransactionType.EXPENSE;
+                }
+            
+            default -> System.out.println(typeOption + " is an invalid transaction type. Please select 1 for Income or 2 for Expense:");
     }   
  }
+}
     public static boolean isValidDate(String date) {
         return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
