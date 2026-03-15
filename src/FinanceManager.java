@@ -1,19 +1,20 @@
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 public class FinanceManager {
 private List<Transaction> transactions;
-private String filePath= "data/Transactions.csv";
+private static final String filePath= "Transactions.csv";
   public FinanceManager() {
     transactions = new ArrayList<>();
   }
 
     public void addTransaction(Transaction transaction){
         transactions.add(transaction);
+        saveTransaction(transaction);
     } 
     public List <Transaction> getTransactions() {
         return transactions;
@@ -37,7 +38,7 @@ public void saveTransaction(Transaction transaction) {
     // Implement file saving logic here (e.g., using FileWriter or CSV libraries)
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))) {
       for (Transaction t: transactions){
-        writer.write(transaction.getDate() + "," + transaction.getDescription() + "," + transaction.getAmount() + "," + transaction.getType());
+        writer.write(t.toCSV());
         writer.newLine();
       }
         
@@ -48,17 +49,12 @@ public void saveTransaction(Transaction transaction) {
 }
 public void loadTransactions() throws IOException {
     // Implement file loading logic here (e.g., using BufferedReader or CSV libraries)
+    transactions.clear();
     String line;
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       while((line = reader.readLine()) !=null){
-        String[] row = line.split(",");
-        for(String index: row) {
-          String date = row[0];
-          String description = row[1];
-          double amount = Double.parseDouble(row[2]);
-          Transaction.TransactionType type = Transaction.TransactionType.ValueOf(row[3]);
-          transactions.add(new Transaction(date, description, amount, type));
-        }
+        Transaction transaction = Transaction.fromCSV(line);
+        transactions.add(transaction);
       }
     } catch (Exception e) {
       e.printStackTrace();

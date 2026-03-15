@@ -1,9 +1,10 @@
 import java.util.List;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         FinanceManager financeManager = new FinanceManager();
+        financeManager.loadTransactions(); 
          while (true) {
              System.out.printf("Personal Finance Manager"+
        "%n 1. Add Transaction" +
@@ -19,7 +20,6 @@ public class Main {
                     double amount = getValidAmount(sc);
                     Transaction.TransactionType type = getValidTypeOption(sc);
                     financeManager.addTransaction(new Transaction(date, description, amount, type));
-                    financeManager.saveTransaction(new Transaction(date, description, amount, type));
                     System.out.println("Transaction added: " + date + " - " + description + " - $" + amount + " - " + type);
                 }
                 case 2 -> {

@@ -25,4 +25,15 @@ public class Transaction {
     public enum TransactionType {
         INCOME, EXPENSE
     }
+    public String toCSV() {
+        return date + "," + description + "," + amount + "," + type;
+    }
+    public static Transaction fromCSV(String line){
+        String[] row = line.split(",");
+        String date = row[0];
+        String description = row[1];
+        double amount = Double.parseDouble(row[2]);
+        TransactionType type = TransactionType.valueOf(row[3]);
+        return new Transaction(date, description, amount, type);
+    }
 }
