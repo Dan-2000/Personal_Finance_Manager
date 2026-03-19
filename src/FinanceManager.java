@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class FinanceManager {
 private List<Transaction> transactions;
-private static final String filePath= "Transactions.csv";
+private static final String filePath= "data/Transactions.csv";
   public FinanceManager() {
     transactions = new ArrayList<>();
   }
 
-    public void addTransaction(Transaction transaction){
+    public void addTransaction(Transaction transaction) throws IOException {
         transactions.add(transaction);
         saveTransaction(transaction);
     } 
@@ -34,15 +34,15 @@ private static final String filePath= "Transactions.csv";
         System.out.println("Total Expenses: $" + expenses);
         System.out.println("Net Balance: $" + (income - expenses));
     }     
-public void saveTransaction(Transaction transaction) {
+public void saveTransaction(Transaction transaction) throws IOException {
     // Implement file saving logic here (e.g., using FileWriter or CSV libraries)
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))) {
-      for (Transaction t: transactions){
-        writer.write(t.toCSV());
+        writer.write(transaction.toCSV());
         writer.newLine();
       }
         
-    } catch (Exception e) {
+     
+    catch (Exception e) {
       e.printStackTrace();
     }
 
@@ -54,10 +54,13 @@ public void loadTransactions() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       while((line = reader.readLine()) !=null){
         Transaction transaction = Transaction.fromCSV(line);
-        transactions.add(transaction);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
+        if (transaction !=null) {
+          transactions.add(transaction);
+        }
+    } 
+  }
+    catch (IOException e) {
+      System.out.println("No existing transactions file found.");
     }
   }
 }

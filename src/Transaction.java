@@ -29,6 +29,9 @@ public class Transaction {
         return date + "," + description + "," + amount + "," + type;
     }
     public static Transaction fromCSV(String line){
+        if (line.startsWith("date")) {
+            return null;
+        }
         String[] row = line.split(",");
         String date = row[0];
         String description = row[1];
