@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransactionController {
 
-    private FinanceService financeService = new FinanceService();
-    public TransactionController(){
+    private final FinanceService financeService;
+    public TransactionController(FinanceService financeService){
         this.financeService = financeService;
     }
     @GetMapping("/")
@@ -21,12 +21,9 @@ public class TransactionController {
         return financeService.getTransactions();
     }
     @PostMapping("/transactions")
-    public String addTransaction(@RequestBody Transaction transaction) {
+    public Transaction addTransaction(@RequestBody Transaction transaction) {
+        System.out.println("Added transaction: " + transaction.getDescription());
         financeService.addTransaction(transaction);
-        return "Transaction added successfully!";
-    }
-    @GetMapping("/summary")
-    public void getSummary() {
-        financeService.getSummary();
+        return transaction;
     }
 }

@@ -1,6 +1,10 @@
 package com.daniel.financeapi;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 @Entity
 public class Transaction {
     @Id
@@ -34,19 +38,5 @@ public class Transaction {
     }
     public enum TransactionType {
         INCOME, EXPENSE
-    }
-    public String toCSV() {
-        return date + "," + description + "," + amount + "," + type;
-    }
-    public static Transaction fromCSV(String line){
-        if (line.startsWith("date")) {
-            return null;
-        }
-        String[] row = line.split(",");
-        String date = row[0];
-        String description = row[1];
-        double amount = Double.parseDouble(row[2]);
-        TransactionType type = TransactionType.valueOf(row[3]);
-        return new Transaction(date, description, amount, type);
     }
 }

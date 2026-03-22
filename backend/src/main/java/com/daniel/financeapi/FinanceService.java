@@ -4,16 +4,16 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 @Service
 public class FinanceService {
-    private FinanceManager financeManager = new FinanceManager();
+    private final TransactionRepository repository;
+    public FinanceService(TransactionRepository repository) {
+        this.repository = repository;
+    }
     public void addTransaction(Transaction transaction) {
-        financeManager.addTransaction(transaction);
+        System.out.println("Saving to DB...");
+        repository.save(transaction);
     }
     public List <Transaction> getTransactions() {
-        return financeManager.getTransactions();    
-    }
-
-    public void getSummary() {
-        financeManager.getSummary();
+        return repository.findAll();
     }
     
 }
