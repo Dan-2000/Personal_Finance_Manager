@@ -20,13 +20,12 @@ public class TransactionController {
         return "Finance API is running!";
     }
     @GetMapping("/transactions")
-    public List<Transaction> getTransactions() {
-        return financeService.getTransactions();
+    public ResponseEntity<List<Transaction>> getTransactions() {
+        return ResponseEntity.ok(financeService.getTransactions());
     }
     @PostMapping("/transactions")
-    public Transaction addTransaction(@Valid @RequestBody Transaction transaction) {
-        System.out.println("Added transaction: " + transaction.getDescription());
-        financeService.addTransaction(transaction);
-        return transaction;
+    public ResponseEntity<Transaction> addTransaction(@Valid @RequestBody Transaction transaction) {
+        Transaction savedTransaction = financeService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTransaction);
     }
 }
