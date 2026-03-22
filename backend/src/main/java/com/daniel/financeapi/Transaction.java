@@ -1,8 +1,16 @@
 package com.daniel.financeapi;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import jakarta.persistence.Entity;
+@Entity
 public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String date;
     private String description;
     private double amount;
+
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
 
     public Transaction() {}
