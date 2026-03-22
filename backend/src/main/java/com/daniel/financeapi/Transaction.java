@@ -5,6 +5,7 @@ public class Transaction {
     private double amount;
     private TransactionType type;
 
+    public Transaction() {}
     public Transaction(String date, String description, double amount, TransactionType type) {
         this.date = date;
         this.description = description;

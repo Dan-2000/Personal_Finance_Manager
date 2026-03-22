@@ -11,12 +11,21 @@ private List<Transaction> transactions;
 private static final String filePath= "data/Transactions.csv";
   public FinanceManager() {
     transactions = new ArrayList<>();
+    try {
+      loadTransactions();
+    } catch (IOException e) {
+      System.out.println("Error loading transactions: ");
+    }
   }
 
-    public void addTransaction(Transaction transaction) throws IOException {
+    public void addTransaction(Transaction transaction) {
+      try {
         transactions.add(transaction);
         saveTransaction(transaction);
-    } 
+      } catch (IOException e) {
+        System.out.println("Error saving transaction: ");
+      }
+    }
     public List <Transaction> getTransactions() {
         return transactions;
     }
