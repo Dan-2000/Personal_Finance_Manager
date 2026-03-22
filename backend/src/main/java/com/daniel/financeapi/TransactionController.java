@@ -1,24 +1,32 @@
 package com.daniel.financeapi;
 import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransactionController {
 
-    private FinanceManager financeManager = new FinanceManager();
+    private FinanceService financeService = new FinanceService();
+    public TransactionController(){
+        this.financeService = financeService;
+    }
     @GetMapping("/")
     public String home() {
         return "Finance API is running!";
     }
     @GetMapping("/transactions")
     public List<Transaction> getTransactions() {
-        return financeManager.getTransactions();
+        return financeService.getTransactions();
     }
     @PostMapping("/transactions")
     public String addTransaction(@RequestBody Transaction transaction) {
-        financeManager.addTransaction(transaction);
+        financeService.addTransaction(transaction);
         return "Transaction added successfully!";
+    }
+    @GetMapping("/summary")
+    public void getSummary() {
+        financeService.getSummary();
     }
 }
