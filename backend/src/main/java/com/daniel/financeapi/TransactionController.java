@@ -1,6 +1,6 @@
 package com.daniel.financeapi;
 import java.util.List;
-
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +21,7 @@ public class TransactionController {
         return financeService.getTransactions();
     }
     @PostMapping("/transactions")
-    public Transaction addTransaction(@RequestBody Transaction transaction) {
+    public Transaction addTransaction(@Valid @RequestBody Transaction transaction) {
         System.out.println("Added transaction: " + transaction.getDescription());
         financeService.addTransaction(transaction);
         return transaction;
