@@ -8,9 +8,8 @@ public class FinanceService {
     public FinanceService(TransactionRepository repository) {
         this.repository = repository;
     }
-    public void addTransaction(Transaction transaction) {
-        System.out.println("Saving to DB...");
-        repository.save(transaction);
+    public Transaction addTransaction(Transaction transaction) {
+        return repository.save(transaction);
     }
     public List <Transaction> getTransactions() {
         return repository.findAll();

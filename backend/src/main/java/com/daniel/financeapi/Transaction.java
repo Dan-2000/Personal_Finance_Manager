@@ -32,6 +32,9 @@ public class Transaction {
         this.amount = amount;
         this.type = type;
     }
+    public long getID() {
+        return id;
+    }
     public String getDate() {
         return date;
     }
