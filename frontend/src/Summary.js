@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react"; 
 
 function Summary() {
-
+const API_URL = "https://your-app-name.personalfinancemanager-production-cbb6.up.railway.app.railway.app";
 const [summary, setSummary] = useState({
     totalIncome:0,
     totalExpense:0,
     netBalance:0
 })
 useEffect(() =>{
-    fetch("https://organic-broccoli-59prrvq9pvq3v5xq-8080.app.github.dev/summary").then((res) => res.json()).then((data) => setSummary(data));
+    fetch(`${API_URL}/summary`).then((res) => res.json()).then((data) => setSummary(data));
 }, []);
 
  return (

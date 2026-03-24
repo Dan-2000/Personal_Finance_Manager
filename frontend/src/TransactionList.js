@@ -1,9 +1,10 @@
 import { useEffect, useState} from "react";
 function TransactionList() {
+    const API_URL = "https://your-app-name.personalfinancemanager-production-cbb6.up.railway.app.railway.app";
     const[transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        fetch("https://organic-broccoli-59prrvq9pvq3v5xq-8080.app.github.dev/transactions").then((res) =>res.json()).then((data) => setTransactions(data));
+        fetch(`${API_URL}/transactions`).then((res) =>res.json()).then((data) => setTransactions(data));
     }, []);
     return (
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">

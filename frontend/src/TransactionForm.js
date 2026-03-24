@@ -1,6 +1,7 @@
 import {useState} from "react";
 
 function TransactionForm({onTransactionAdded}) {
+const API_URL = "https://your-app-name.personalfinancemanager-production-cbb6.up.railway.app.railway.app";
 const [formData, setFormData] = useState({
     date : "",
     description : "",
@@ -10,7 +11,7 @@ const [formData, setFormData] = useState({
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-const response = await fetch("https://organic-broccoli-59prrvq9pvq3v5xq-8080.app.github.dev/transactions", {
+const response = await fetch(`${API_URL}/transactions`, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(formData) });
