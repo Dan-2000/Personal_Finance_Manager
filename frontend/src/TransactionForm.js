@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 function TransactionForm({onTransactionAdded}) {
-const API_URL = "personalfinancemanager-production-cbb6.up.railway.app";
+const API_URL = "https://personalfinancemanager-production-cbb6.up.railway.app";
 const [formData, setFormData] = useState({
     date : "",
     description : "",
