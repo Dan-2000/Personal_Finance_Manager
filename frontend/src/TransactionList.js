@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 function TransactionList() {
-    const API_URL = "https://your-app-name.personalfinancemanager-production-cbb6.up.railway.app.railway.app";
+    const API_URL = "personalfinancemanagerfrontend-production.up.railway.app";
     const[transactions, setTransactions] = useState([]);
 
     useEffect(() => {

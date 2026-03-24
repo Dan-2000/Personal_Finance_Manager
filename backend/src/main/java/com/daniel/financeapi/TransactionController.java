@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-@CrossOrigin(origins = "personalfinancemanager-production-30f9.up.railway.app")
+@CrossOrigin(origins = "personalfinancemanagerfrontend-production.up.railway.app")
 @RestController
 public class TransactionController {
 

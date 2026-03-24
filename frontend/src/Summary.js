@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"; 
 
 function Summary() {
-const API_URL = "https://your-app-name.personalfinancemanager-production-cbb6.up.railway.app.railway.app";
+const API_URL = "personalfinancemanagerfrontend-production.up.railway.app";
 const [summary, setSummary] = useState({
     totalIncome:0,
     totalExpense:0,
