@@ -5,12 +5,20 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 @Entity
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long TransactionId;
+
+    @ManyToOne
+    @JoinColumn(name = "UserID")
+    private User user;
 
     @NotBlank(message = "Date is required in format YYYY-MM-DD.")
     private String date;
@@ -33,7 +41,10 @@ public class Transaction {
         this.type = type;
     }
     public long getID() {
-        return id;
+        return TransactionId;
+    }
+    public User getUser() {
+        return user;
     }
     public String getDate() {
         return date;
@@ -49,6 +60,9 @@ public class Transaction {
     }
     public enum TransactionType {
         INCOME, EXPENSE
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
     public void setDate(String date) {
         this.date = date;
