@@ -1,4 +1,4 @@
-package com.daniel.financeapi;
+package com.daniel.financeapi.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -73,7 +73,7 @@ public class Transaction {
     public void setAmount(double amount){
         this.amount = amount;
     }
-    public void setType(TransactionType type) {
+    public void setTransactionType(TransactionType type) {
         this.type = type;
     }
 }

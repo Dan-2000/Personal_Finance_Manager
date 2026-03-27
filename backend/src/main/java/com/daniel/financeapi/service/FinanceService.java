@@ -1,7 +1,12 @@
-package com.daniel.financeapi;
+package com.daniel.financeapi.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.daniel.financeapi.SummaryResponse;
+import com.daniel.financeapi.TransactionRepository;
+import com.daniel.financeapi.model.Transaction;
+import com.daniel.financeapi.model.Transaction.TransactionType;
 
 @Service
 public class FinanceService {

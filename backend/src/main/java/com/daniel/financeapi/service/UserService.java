@@ -1,6 +1,10 @@
-package com.daniel.financeapi;
+package com.daniel.financeapi.service;
 
 import org.springframework.stereotype.Service;
+
+import com.daniel.financeapi.UserRepository;
+import com.daniel.financeapi.model.User;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service

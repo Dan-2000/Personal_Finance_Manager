@@ -1,4 +1,4 @@
-package com.daniel.financeapi;
+package com.daniel.financeapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
