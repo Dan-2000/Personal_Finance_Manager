@@ -5,17 +5,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
 @Entity
 public class Transaction {
+    // Data types & validation rules
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long TransactionId;
 
+// database connection
     @ManyToOne
     @JoinColumn(name = "UserID")
     private User user;
@@ -33,6 +35,7 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType type;
 
+
     public Transaction() {}
     public Transaction(String date, String description, double amount, TransactionType type) {
         this.date = date;
@@ -40,6 +43,7 @@ public class Transaction {
         this.amount = amount;
         this.type = type;
     }
+    //getters
     public long getID() {
         return TransactionId;
     }
@@ -61,6 +65,7 @@ public class Transaction {
     public enum TransactionType {
         INCOME, EXPENSE
     }
+    //setters
     public void setUser(User user) {
         this.user = user;
     }

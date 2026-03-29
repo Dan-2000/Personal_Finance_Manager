@@ -17,6 +17,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class User {
+   // Data types & validation rules
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long UserID;
@@ -33,7 +34,8 @@ public class User {
   @NotNull(message = "Role type is required.")
   @Enumerated(EnumType.STRING)
    private RoleType role;
-
+   
+// database connection
    @OneToMany(mappedBy = "user")
    private List<Transaction> transactions;
    public User() {}
@@ -42,6 +44,8 @@ public class User {
     this.password = password;
     this.role = role;
    }
+
+   //getters
    public Long getUserID() {
     return UserID;
    }
@@ -61,6 +65,7 @@ public class User {
    public enum RoleType {
       ADMIN,USER
    }
+//setters
 
    public void setEmail(String email) {
       this.email = email;
