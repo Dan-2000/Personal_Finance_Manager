@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.daniel.financeapi.model.LoginRequest;
 import com.daniel.financeapi.model.User;
 import com.daniel.financeapi.service.UserService;
 
@@ -24,5 +25,9 @@ public class UserController {
         User registeredUser = userService.registerUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser);
     }       
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.login(request.getEmail(), request.getPassword()));
+    }
 
 }

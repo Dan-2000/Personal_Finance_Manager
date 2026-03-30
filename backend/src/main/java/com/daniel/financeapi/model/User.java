@@ -10,12 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "users")
 public class User {
    // Data types & validation rules
    @Id
@@ -61,7 +63,7 @@ public class User {
    public RoleType getRole() {
       return role;
    }
-   
+   // Enum for user role (defaults to USER but future plans for an admin mode)
    public enum RoleType {
       ADMIN,USER
    }
