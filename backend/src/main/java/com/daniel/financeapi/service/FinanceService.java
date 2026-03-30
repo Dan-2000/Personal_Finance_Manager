@@ -2,26 +2,40 @@ package com.daniel.financeapi.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.daniel.financeapi.SummaryResponse;
 import com.daniel.financeapi.TransactionRepository;
 import com.daniel.financeapi.model.Transaction;
-import com.daniel.financeapi.model.Transaction.TransactionType;
+import com.daniel.financeapi.UserRepository;
+import com.daniel.financeapi.model.User;
 
 @Service
 public class FinanceService {
     private final TransactionRepository repository;
-    public FinanceService(TransactionRepository repository) {
+    private final UserRepository userRepository;
+
+    public FinanceService(TransactionRepository repository, UserRepository userRepository) {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
+    
+
     public Transaction addTransaction(Transaction transaction) {
-        return repository.save(transaction);
+     String email = SecurityContextHolder.getContext().getAuthentication().getName();  
+     User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found - Please enter a valid email"));
+     transaction.setUser(user);
+     return repository.save(transaction);
     }
+    
     public List <Transaction> getTransactions() {
-        return repository.findAll();
-    }
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();  
+    User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found - Please enter a valid email"));
+    return repository.findByUser(user);
+  }
+
     public SummaryResponse getSummary() {
-        List<Transaction> transactions = repository.findAll();
+        List<Transaction> transactions = getTransactions();
         double totalIncome = transactions.stream().filter(t -> t.getType() == Transaction.TransactionType.INCOME).mapToDouble(Transaction::getAmount).sum();
         double totalExpense = transactions.stream().filter(t -> t.getType() == Transaction.TransactionType.EXPENSE).mapToDouble(Transaction::getAmount).sum();
         double netBalance = totalIncome - totalExpense;
