@@ -14,7 +14,7 @@ import com.daniel.financeapi.model.Transaction;
 import com.daniel.financeapi.service.FinanceService;
 
 import jakarta.validation.Valid;
-@CrossOrigin(origins = {"https://personalfinancemanagerfrontend-production.up.railway.app", "https://organic-broccoli-59prrvq9pvq3v5xq-3000.app.github.dev"})
+@CrossOrigin(origins = "https://personalfinancemanagerfrontend-production.up.railway.app")
 @RestController
 public class TransactionController {
 
