@@ -10,7 +10,7 @@ function TransactionList() {
                 "Authorization": `Bearer ${token}`
             }
         }).then((res) => res.json()).then((data) => setTransactions(data));
-    }, []);
+    }, [token]);
     return (
         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
         <h2 className="text-xl font-bold text-gray-800 mb-6">Transactions</h2>

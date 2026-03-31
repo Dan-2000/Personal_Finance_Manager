@@ -14,7 +14,7 @@ useEffect(() =>{
             "Authorization": `Bearer ${token}`
         }
     }).then((res) => res.json()).then((data) => setSummary(data));
-}, []);
+}, [token]);
 
  return (
          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
