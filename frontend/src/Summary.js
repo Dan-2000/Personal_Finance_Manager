@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react"; 
 
-function Summary() {
+function Summary({refresh}) {
 const API_URL = "https://personalfinancemanager-production-cbb6.up.railway.app";
 const [summary, setSummary] = useState({
     totalIncome:0,
@@ -14,7 +14,7 @@ useEffect(() =>{
             "Authorization": `Bearer ${token}`
         }
     }).then((res) => res.json()).then((data) => setSummary(data));
-}, [token]);
+}, [token, refresh]);
 
  return (
          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">

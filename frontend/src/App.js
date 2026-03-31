@@ -28,7 +28,7 @@ function App() {
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Finance Manager</h1>
       <button onClick={logout} className="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Log out</button>
       <div className="max-w-4xl mx-auto flex flex-col gap-6">
-      <Summary key = {refresh} />
+      <Summary refresh = {refresh} />
       <TransactionForm onTransactionAdded={handleTransactionAdded} />
       <TransactionList key={refresh} />
       </div>
