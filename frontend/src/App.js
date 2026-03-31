@@ -21,7 +21,7 @@ function App() {
       setRefresh((prev) => prev + 1);
     },[]);
     // no token takes you to login page
-  if(!token) return <LoginPage onLoginSuccess = {(newToken) => setToken(newToken)} />
+  if(!localStorage.getItem("token")) return <LoginPage onLoginSuccess = {(newToken) => setToken(newToken)} />
 // if token is valid - you see the app - if not - you are logged out and taken to login page
   return (
       <div className="min-h-screen bg-[#f5f5f5] p-8">
