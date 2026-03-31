@@ -7,8 +7,13 @@ const [summary, setSummary] = useState({
     totalExpense:0,
     netBalance:0
 })
+const token = localStorage.getItem("token");
 useEffect(() =>{
-    fetch(`${API_URL}/summary`).then((res) => res.json()).then((data) => setSummary(data));
+    fetch(`${API_URL}/summary`, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }).then((res) => res.json()).then((data) => setSummary(data));
 }, []);
 
  return (

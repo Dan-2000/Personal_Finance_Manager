@@ -8,12 +8,13 @@ const [formData, setFormData] = useState({
     amount : "",
     type : ""
 })
+const token = localStorage.getItem("token");
 const handleSubmit = async (e) => {
     e.preventDefault();
 
 const response = await fetch(`${API_URL}/transactions`, {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: {"Content-Type": "application/json", "Authorization" : `Bearer ${token}`},
     body: JSON.stringify(formData) });
 
     if (response.ok) {

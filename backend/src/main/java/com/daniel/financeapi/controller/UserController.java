@@ -13,7 +13,7 @@ import com.daniel.financeapi.service.UserService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "https://personalfinancemanagerfrontend-production.up.railway.app")
+@CrossOrigin(origins = {"https://personalfinancemanagerfrontend-production.up.railway.app", "https://organic-broccoli-59prrvq9pvq3v5xq-3000.app.github.dev"})
 @RestController
 public class UserController {
     private final UserService userService;
