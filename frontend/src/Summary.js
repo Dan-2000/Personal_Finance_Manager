@@ -17,20 +17,23 @@ useEffect(() =>{
 }, [token, refresh]);
 
  return (
-         <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-bold text-gray-800 mb-6">Summary</h2>
+         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e] shadow-xl">
+        <h2 className="text-xl font-bold text-white mb-6">Summary</h2>
         <div className="grid grid-cols-3 gap-4">
-            <div className="bg-[#f5f5f5] rounded-xl p-4 text-center border border-gray-200">
-                <p className="text-gray-500 text-sm mb-1">Total Income</p>
-                <p className="text-green-600 text-2xl font-bold">£{summary.totalIncome}</p>
+
+            <div className="bg-[#0f3460] rounded-xl p-4 text-center border border-[#2d2d5e]">
+                <p className="text-[#a0aec0] text-sm mb-1">Total Income</p>
+                <p className="text-green-400 text-2xl font-bold">£{summary.totalIncome}</p>
             </div>
-            <div className="bg-[#f5f5f5] rounded-xl p-4 text-center border border-gray-200">
-                <p className="text-gray-500 text-sm mb-1">Total Expenses</p>
-                <p className="text-red-500 text-2xl font-bold">£{summary.totalExpense}</p>
+
+            <div className="bg-[#0f3460] rounded-xl p-4 text-center border border-[#2d2d5e]">
+                <p className="text-[#a0aec0] text-sm mb-1">Total Expenses</p>
+                <p className="text-red-400 text-2xl font-bold">£{summary.totalExpense}</p>
             </div>
-            <div className="bg-[#f5f5f5] rounded-xl p-4 text-center border border-gray-200">
-                <p className="text-gray-500 text-sm mb-1">Net Balance</p>
-                <p className="text-blue-600 text-2xl font-bold">£{summary.netBalance}</p>
+
+            <div className="bg-[#0f3460] rounded-xl p-4 text-center border border-[#2d2d5e]">
+                <p className="text-[#a0aec0] text-sm mb-1">Net Balance</p>
+                <p className="text-[#7c3aed] text-2xl font-bold">£{summary.netBalance}</p>
             </div>
         </div>
     </div>

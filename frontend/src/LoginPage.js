@@ -47,30 +47,36 @@ function LoginPage({onLoginSuccess}) {
     };
 
     return  (
-    <div> 
-        <h4 className="text-2xl font-bold text-gray-800 mb-6">{isRegistering ?"Register" : "Login"} </h4>
-        <form onSubmit ={isRegistering ? handleRegister : handleSubmit} className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="min-h-screen bg-[#1a1a2e] flex items-center justify-center">
+        <div className="bg-[#16213e] p-8 rounded-2xl border border-[#2d2d5e] w-full max-w-sm shadow-xl">
+            <h1 className="text-4xl font-bold text-white mb-2"> Finance Manager</h1>
+            <p className="text-[#a0aec0] mb-8">{isRegistering ? "Create an account" : "Welcome back"}</p>
+        
+        <form onSubmit ={isRegistering ? handleRegister : handleSubmit} className="flex flex-col gap-4">
             <input
             type="email"
             placeholder = "Email"
             value = {email}
             onChange={(e) => setEmail(e.target.value)}
+            className="bg-[#0f3460] text-white placeholder-[#a0aec0] rounded-xl px-4 py-3 border border-[#2d2d5e] focus:outline-none focus:border-[#7c3aed]"
             />
             <input 
             type = "password"
             placeholder = "Password"
             value = {password}
             onChange ={(e) => setPassword(e.target.value)}
+            className="bg-[#0f3460] text-white placeholder-[#a0aec0] rounded-xl px-4 py-3 border border-[#2d2d5e] focus:outline-none focus:border-[#7c3aed]"
             />
-            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button type="submit" className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold py-3 rounded-xl transition-colors duration-200">
                 {isRegistering ? "Register" : "Login"}
             </button>
         </form>
         <p onClick={() => setIsRegistering(!isRegistering)}
-        className="cursor-pointer text-blue-500 hover:underline mt-4">
+        className="cursor-pointer text-[#a0aec0] hover:text-white mt-6 text-center text-sm transition-colors duration-200">
             {isRegistering ? "Already have an account? Login here." : "Don't have an account? Register here."}
         </p>
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && <p className={`text-sm mt-3 text-center ${error.includes("successful") ? "text-green-400" : "text-red-400"}`}>{error}</p>}
+    </div>
     </div>
     );
 }
