@@ -44,7 +44,7 @@ public class Transaction {
         this.type = type;
     }
     //getters
-    public long getID() {
+    public long getTransactionId() {
         return TransactionId;
     }
     public User getUser() {
