@@ -37,6 +37,19 @@ public class FinanceService {
         }
         repository.delete(transaction);
     }
+    public Transaction updateTransaction(Long id, Transaction updatedTransaction) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found - Please enter a valid email"));
+        Transaction transaction = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+        if (!transaction.getUser().getUserID().equals(user.getUserID())) {
+        throw new IllegalArgumentException("You are not authorised to update this transaction");
+        }
+        transaction.setDate(updatedTransaction.getDate());
+        transaction.setAmount(updatedTransaction.getAmount());
+        transaction.setTransactionType(updatedTransaction.getType());
+        transaction.setDescription(updatedTransaction.getDescription());
+        return repository.save(transaction);
+    }
 
     public List <Transaction> getTransactions() {
     String email = SecurityContextHolder.getContext().getAuthentication().getName();  

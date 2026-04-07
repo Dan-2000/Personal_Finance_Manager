@@ -7,6 +7,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,11 @@ public class TransactionController {
     public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
         financeService.deleteTransaction(id);
         return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/transactions/{id}")
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable Long id, @Valid @RequestBody Transaction transaction) {
+        Transaction updatedTransaction = financeService.updateTransaction(id, transaction);
+        return ResponseEntity.ok(updatedTransaction);
     }
     @GetMapping("/summary")
     public ResponseEntity<SummaryResponse> getSummary() {
