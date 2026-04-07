@@ -13,6 +13,10 @@ const API_URL = "https://personalfinancemanager-production-cbb6.up.railway.app";
 const token = localStorage.getItem("token");
 
   const handleSave = async () => {
+//debugging 
+    console.log("Transaction:", transaction);
+    console.log("ID:", transaction.ID);
+
    const response = await fetch(`${API_URL}/transactions/${transaction.ID}`, {
       method: "PUT",
       headers: {
