@@ -12,7 +12,7 @@ function TransactionList() {
             }
         });
         if (response.ok) {        
-            setTransactions(transactions.filter((t) => t.id !== id));
+            setTransactions(transactions.filter((t) => t.ID !== id));
         }
     };
 
@@ -31,7 +31,7 @@ function TransactionList() {
         ) : (
             <div className="flex flex-col gap-3">
                 {transactions.reverse().map((t) => (
-                    <div key={t.id} className="flex justify-between items-center bg-[#0f3460] rounded-xl p-4 border border-[#2d2d5e]">
+                    <div key={t.ID} className="flex justify-between items-center bg-[#0f3460] rounded-xl p-4 border border-[#2d2d5e]">
                         <div>
                             <p className="font-semibold text-white">{t.description}</p>
                             <p className="text-[#a0aec0] text-sm">{t.date}</p>
@@ -42,7 +42,7 @@ function TransactionList() {
                             </p>
                             <p className="text-[#a0aec0] text-sm">{t.type}</p>
                             <button
-                                onClick={() => handleDelete(t.id)}
+                                onClick={() => handleDelete(t.ID)}
                                 className="mt-2 text-sm text-red-400 hover:text-red-600">
                                 Delete
                             </button>
