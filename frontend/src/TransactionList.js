@@ -1,8 +1,10 @@
 import { useEffect, useState} from "react";
+import EditModal from "./EditModal";
 function TransactionList() {
     const API_URL = "https://personalfinancemanager-production-cbb6.up.railway.app";
     const[transactions, setTransactions] = useState([]);
     const token = localStorage.getItem("token");
+    const [editingTransaction, setEditingTransaction] = useState(null);
 
     const handleDelete = async (id) => {
         const response = await fetch(`${API_URL}/transactions/${id}`, {
@@ -42,16 +44,36 @@ function TransactionList() {
                             </p>
                             <p className="text-[#a0aec0] text-sm">{t.type}</p>
                             <button
+                                onClick={() => setEditingTransaction(t)}
+                                className="mt-2 text-sm text-[#7c3aed] hover:text-purple-300">
+                                Edit
+                            </button>
+                            <button
                                 onClick={() => handleDelete(t.ID)}
                                 className="mt-2 text-sm text-red-400 hover:text-red-600">
                                 Delete
                             </button>
+
                         </div>
                     </div>
                 ))}
             </div>
         )}
+
+        {editingTransaction && (
+            <EditModal
+                transaction={editingTransaction}
+                onClose={() => setEditingTransaction(null)}
+                onSave={() => {
+                    setEditingTransaction(null);
+                    fetch(`${API_URL}/transactions`, {
+                        headers: {"Authorization": `Bearer ${token}`}
+                    }).then((res) => res.json()).then((data) => setTransactions(data));
+                }}
+            />
+        )}
     </div>
-    );
+    
+);
 }
 export default TransactionList;
