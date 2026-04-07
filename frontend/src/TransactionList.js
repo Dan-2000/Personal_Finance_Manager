@@ -14,7 +14,7 @@ function TransactionList() {
             }
         });
         if (response.ok) {        
-            setTransactions(transactions.filter((t) => t.ID !== id));
+            setTransactions(transactions.filter((t) => t.TransactionId !== id));
         }
     };
 
@@ -49,7 +49,7 @@ function TransactionList() {
                                 Edit
                             </button>
                             <button
-                                onClick={() => handleDelete(t.ID)}
+                                onClick={() => handleDelete(t.TransactionId)}
                                 className="mt-2 text-sm text-red-400 hover:text-red-600">
                                 Delete
                             </button>

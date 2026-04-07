@@ -17,7 +17,7 @@ const token = localStorage.getItem("token");
     console.log("Transaction:", transaction);
     console.log("ID:", transaction.ID);
 
-   const response = await fetch(`${API_URL}/transactions/${transaction.ID}`, {
+   const response = await fetch(`${API_URL}/transactions/${transaction.TransactionId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
