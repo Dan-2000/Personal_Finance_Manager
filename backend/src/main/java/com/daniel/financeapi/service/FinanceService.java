@@ -1,13 +1,13 @@
 package com.daniel.financeapi.service;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import com.daniel.financeapi.SummaryResponse;
 import com.daniel.financeapi.TransactionRepository;
-import com.daniel.financeapi.model.Transaction;
 import com.daniel.financeapi.UserRepository;
+import com.daniel.financeapi.model.Transaction;
 import com.daniel.financeapi.model.User;
 
 @Service
@@ -28,6 +28,16 @@ public class FinanceService {
      return repository.save(transaction);
     }
     
+    public void deleteTransaction(Long TransactionId) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found - Please enter a valid email"));
+        Transaction transaction = repository.findById(TransactionId).orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+        if (!transaction.getUser().getUserID().equals(user.getUserID())) {
+        throw new IllegalArgumentException("You are not authorised to delete this transaction");
+        }
+        repository.delete(transaction);
+    }
+
     public List <Transaction> getTransactions() {
     String email = SecurityContextHolder.getContext().getAuthentication().getName();  
     User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("User not found - Please enter a valid email"));
