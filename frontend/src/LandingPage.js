@@ -10,14 +10,30 @@ function LandingPage({ onLoginSuccess }) {
     };
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const opacity = Math.max(0, 1 - scrollY / 400);
-            setHeroOpacity(opacity);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const opacity = Math.max(0, 1 - scrollY / 400);
+        setHeroOpacity(opacity);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+useEffect(() => {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("opacity-100", "translate-y-0");
+                    entry.target.classList.remove("opacity-0", "translate-y-8");
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+}, []);
 
     return (
     <div className="bg-[#1a1a2e] min-h-screen">
@@ -43,7 +59,7 @@ function LandingPage({ onLoginSuccess }) {
             </button>
         </div>
 
-        <div className="max-w-5xl mx-auto px-8 py-24">
+        <div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-24">
     <h3 className="text-3xl font-bold text-white text-center mb-16">Everything you need</h3>
     <div className="grid grid-cols-3 gap-8">
         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
@@ -65,18 +81,16 @@ function LandingPage({ onLoginSuccess }) {
 </div>
 
 {/* Screenshots placeholder */}
-<div className="max-w-5xl mx-auto px-8 py-24 text-center">
+<div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-24">
     <h3 className="text-3xl font-bold text-white mb-4">See it in action</h3>
     <p className="text-[#a0aec0] mb-16">Screenshots coming soon</p>
 </div>
 
 {/* Login section */}
-<div ref={loginRef} className="py-24">
+<div ref={loginRef} className="fade-in opacity-0 translate-y-8 transition-all duration-700 py-24">
     <h3 className="text-3xl font-bold text-white text-center mb-12">Get started today</h3>
     <LoginPage onLoginSuccess={onLoginSuccess} />
-</div>
-
-
+        </div>
     </div>
 );
 }
