@@ -3,7 +3,6 @@ import TransactionList from "./TransactionList";
 import TransactionForm from "./TransactionForm"; 
 import './index.css';
 import Summary from "./Summary";
-import LoginPage from "./LoginPage";
 import LandingPage from "./LandingPage";
 
 function App() {
