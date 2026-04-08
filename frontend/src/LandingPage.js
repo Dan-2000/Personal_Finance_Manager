@@ -80,10 +80,27 @@ useEffect(() => {
     </div>
 </div>
 
-{/* Screenshots placeholder */}
+{/* Images of website working */}
 <div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-24">
-    <h3 className="text-3xl font-bold text-white mb-4">See it in action</h3>
-    <p className="text-[#a0aec0] mb-16">Screenshots coming soon</p>
+    <h3 className="text-3xl font-bold text-white text-center mb-16">See it in action</h3>
+    <div className="grid grid-cols-2 gap-8">
+        <div className="bg-[#16213e] rounded-2xl p-4 border border-[#2d2d5e]">
+            <img src={require("./assets/Summary.png")} alt="Summary" className="rounded-xl w-full"/>
+            <p className="text-[#a0aec0] text-center mt-4">Live financial summary</p>
+        </div>
+        <div className="bg-[#16213e] rounded-2xl p-4 border border-[#2d2d5e]">
+            <img src={require("./assets/Transaction History.png")} alt="Transactions" className="rounded-xl w-full"/>
+            <p className="text-[#a0aec0] text-center mt-4">Full transaction history</p>
+        </div>
+        <div className="bg-[#16213e] rounded-2xl p-4 border border-[#2d2d5e]">
+            <img src={require("./assets/Add Transaction.png")} alt="Add Transaction" className="rounded-xl w-full"/>
+            <p className="text-[#a0aec0] text-center mt-4">Add transactions easily</p>
+        </div>
+        <div className="bg-[#16213e] rounded-2xl p-4 border border-[#2d2d5e]">
+            <img src={require("./assets/Edit Transaction.png")} alt="Edit Transaction" className="rounded-xl w-full"/>
+            <p className="text-[#a0aec0] text-center mt-4">Edit transactions with ease</p>
+        </div>
+    </div>
 </div>
 
 {/* Login section */}
