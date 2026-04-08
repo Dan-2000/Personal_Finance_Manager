@@ -1,0 +1,84 @@
+import { useEffect, useRef, useState } from "react";
+import LoginPage from "./LoginPage";
+
+function LandingPage({ onLoginSuccess }) {
+    const loginRef = useRef(null);
+    const [heroOpacity, setHeroOpacity] = useState(1);
+
+    const scrollToLogin = () => {
+        loginRef.current.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const opacity = Math.max(0, 1 - scrollY / 400);
+            setHeroOpacity(opacity);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    return (
+    <div className="bg-[#1a1a2e] min-h-screen">
+
+        {/* Navbar */}
+        <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 bg-[#1a1a2e] border-b border-[#2d2d5e]">
+            <h1 className="text-xl font-bold text-white"> Finance Manager</h1>
+            <button
+                onClick={scrollToLogin}
+                className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold px-6 py-2 rounded-xl transition-colors duration-200">
+                Login / Register
+            </button>
+        </nav>
+
+        {/* Hero */}
+        <div style={{ opacity: heroOpacity }} className="flex flex-col items-center justify-center text-center px-8 pt-40 pb-32 transition-opacity">
+            <h2 className="text-6xl font-bold text-white mb-6">Take control of your finances</h2>
+            <p className="text-[#a0aec0] text-xl max-w-xl mb-10">Track income and expenses, view your balance at a glance and manage your money — all in one place.</p>
+            <button
+                onClick={scrollToLogin}
+                className="bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors duration-200">
+                Get Started
+            </button>
+        </div>
+
+        <div className="max-w-5xl mx-auto px-8 py-24">
+    <h3 className="text-3xl font-bold text-white text-center mb-16">Everything you need</h3>
+    <div className="grid grid-cols-3 gap-8">
+        <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
+            <div className="text-4xl mb-4">📊</div>
+            <h4 className="text-xl font-bold text-white mb-3">Track Transactions</h4>
+            <p className="text-[#a0aec0]">Add income and expenses with a date, description and amount. See your full transaction history at a glance.</p>
+        </div>
+        <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
+            <div className="text-4xl mb-4">💰</div>
+            <h4 className="text-xl font-bold text-white mb-3">Live Summary</h4>
+            <p className="text-[#a0aec0]">See your total income, total expenses and net balance update in real time as you add transactions.</p>
+        </div>
+        <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
+            <div className="text-4xl mb-4">🔒</div>
+            <h4 className="text-xl font-bold text-white mb-3">Secure & Private</h4>
+            <p className="text-[#a0aec0]">Your data is protected with JWT authentication. Only you can see your transactions.</p>
+        </div>
+    </div>
+</div>
+
+{/* Screenshots placeholder */}
+<div className="max-w-5xl mx-auto px-8 py-24 text-center">
+    <h3 className="text-3xl font-bold text-white mb-4">See it in action</h3>
+    <p className="text-[#a0aec0] mb-16">Screenshots coming soon</p>
+</div>
+
+{/* Login section */}
+<div ref={loginRef} className="py-24">
+    <h3 className="text-3xl font-bold text-white text-center mb-12">Get started today</h3>
+    <LoginPage onLoginSuccess={onLoginSuccess} />
+</div>
+
+
+    </div>
+);
+}
+
+export default LandingPage;

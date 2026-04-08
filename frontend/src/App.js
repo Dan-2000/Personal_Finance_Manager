@@ -4,25 +4,33 @@ import TransactionForm from "./TransactionForm";
 import './index.css';
 import Summary from "./Summary";
 import LoginPage from "./LoginPage";
-
+import LandingPage from "./LandingPage";
 
 function App() {
 
     const [refresh, setRefresh] = useState(0);
 
     const [token, setToken] = useState(localStorage.getItem("token"));
-   
+    const [showLanding, setShowLanding] = useState(!token);
+
     const logout = () => {
       localStorage.removeItem("token");
       setToken(null);
+      setShowLanding(true);
     }
+
+    const handleLoginSuccess = (newToken) => {
+      setToken(newToken);
+      setShowLanding(false);
+    };
 
     const handleTransactionAdded =useCallback(() => {
       setRefresh((prev) => prev + 1);
     },[]);
-    // no token takes you to login page
- if(!token) return (<LoginPage onLoginSuccess = {(newToken) => setToken(newToken)} />);
-// if token is valid - you see the app - if not - you are logged out and taken to login page
+    // no token takes you to the landing page
+    if (showLanding && !token) return (
+      <LandingPage onLoginSuccess={handleLoginSuccess} />
+    );
   return (
         <div className="min-h-screen bg-[#1a1a2e] p-8">
         <div className="max-w-4xl mx-auto">
