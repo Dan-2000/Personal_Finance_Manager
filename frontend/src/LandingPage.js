@@ -49,7 +49,7 @@ useEffect(() => {
         </nav>
 
         {/* Hero */}
-        <div style={{ opacity: heroOpacity }} className="flex flex-col items-center justify-center text-center px-8 pt-40 pb-32 transition-opacity">
+        <div style={{ opacity: heroOpacity }} className="flex flex-col items-center justify-center text-center px-8 pt-40 pb-16 transition-opacity">
             <h2 className="text-6xl font-bold text-white mb-6">Take control of your finances</h2>
             <p className="text-[#a0aec0] text-xl max-w-xl mb-10">Track income and expenses, view your balance at a glance and manage your money — all in one place.</p>
             <button
@@ -59,7 +59,7 @@ useEffect(() => {
             </button>
         </div>
 
-        <div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-12">
+        <div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-8">
     <h3 className="text-3xl font-bold text-white text-center mb-8">Everything you need</h3>
     <div className="grid grid-cols-3 gap-8">
         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
@@ -81,7 +81,7 @@ useEffect(() => {
 </div>
 
 {/* Images of website working */}
-<div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-12">
+<div className="fade-in opacity-0 translate-y-8 transition-all duration-700 max-w-5xl mx-auto px-8 py-8">
     <h3 className="text-3xl font-bold text-white text-center mb-8">See it in action</h3>
     <div className="grid grid-cols-2 gap-8">
         <div className="bg-[#16213e] rounded-2xl p-4 border border-[#2d2d5e]">
@@ -104,8 +104,8 @@ useEffect(() => {
 </div>
 
 {/* Login section */}
-<div ref={loginRef} className="fade-in opacity-0 translate-y-8 transition-all duration-700 py-12">
-    <h3 className="text-3xl font-bold text-white text-center mb-12">Get started today</h3>
+<div ref={loginRef} className="fade-in opacity-0 translate-y-8 transition-all duration-700 py-8">
+    <h3 className="text-3xl font-bold text-white text-center mb-6">Get started today</h3>
     <LoginPage onLoginSuccess={onLoginSuccess} />
         </div>
     </div>
