@@ -63,17 +63,23 @@ useEffect(() => {
     <h3 className="text-3xl font-bold text-white text-center mb-8">Everything you need</h3>
     <div className="grid grid-cols-3 gap-8">
         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
-            <div className="text-4xl mb-4">📊</div>
+            <div className="text-4xl mb-4">
+                <img src={require("./assets/track-transactions.jpg")} alt="Track" className="w-16 h-16 mb-4"/>
+            </div>
             <h4 className="text-xl font-bold text-white mb-3">Track Transactions</h4>
             <p className="text-[#a0aec0]">Add income and expenses with a date, description and amount. See your full transaction history at a glance.</p>
         </div>
         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
-            <div className="text-4xl mb-4">💰</div>
+            <div className="text-4xl mb-4">
+                <img src={require("./assets/live-summary.jpg")} alt="Summary" className="w-16 h-16 mb-4"/>
+            </div>
             <h4 className="text-xl font-bold text-white mb-3">Live Summary</h4>
             <p className="text-[#a0aec0]">See your total income, total expenses and net balance update in real time as you add transactions.</p>
         </div>
         <div className="bg-[#16213e] rounded-2xl p-6 border border-[#2d2d5e]">
-            <div className="text-4xl mb-4">🔒</div>
+            <div className="text-4xl mb-4">
+                <img src={require("./assets/secure-private.jpg")} alt="Secure" className="w-16 h-16 mb-4"/>
+            </div>
             <h4 className="text-xl font-bold text-white mb-3">Secure & Private</h4>
             <p className="text-[#a0aec0]">Your data is protected with JWT authentication. Only you can see your transactions.</p>
         </div>
@@ -105,7 +111,6 @@ useEffect(() => {
 
 {/* Login section */}
 <div ref={loginRef} className="fade-in opacity-0 translate-y-8 transition-all duration-700 py-8">
-    <h3 className="text-3xl font-bold text-white text-center mb-6">Get started today</h3>
     <LoginPage onLoginSuccess={onLoginSuccess} />
         </div>
     </div>
