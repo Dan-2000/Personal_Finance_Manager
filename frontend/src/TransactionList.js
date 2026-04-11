@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react";
 import EditModal from "./EditModal";
-function TransactionList() {
+function TransactionList( {onRefresh}) {
     const API_URL = "https://personalfinancemanager-production-cbb6.up.railway.app";
     const[transactions, setTransactions] = useState([]);
     const token = localStorage.getItem("token");
@@ -15,6 +15,7 @@ function TransactionList() {
         });
         if (response.ok) {        
             setTransactions(transactions.filter((t) => t.TransactionId !== id));
+            onRefresh();
         }
     };
 
@@ -69,6 +70,7 @@ function TransactionList() {
                     fetch(`${API_URL}/transactions`, {
                         headers: {"Authorization": `Bearer ${token}`}
                     }).then((res) => res.json()).then((data) => setTransactions(data));
+                    onRefresh();
                 }}
             />
         )}

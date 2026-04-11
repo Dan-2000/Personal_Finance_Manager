@@ -42,7 +42,7 @@ function App() {
             <div className="flex flex-col gap-6">
       <Summary refresh = {refresh} />
       <TransactionForm onTransactionAdded={handleTransactionAdded} />
-      <TransactionList key={refresh} />
+      <TransactionList key={refresh} onRefresh={handleTransactionAdded} />
       </div>
     </div>
     </div>
